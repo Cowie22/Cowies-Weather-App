@@ -25,6 +25,20 @@ body {
   height: 100%;
 }
 
+%User-Word-Style {
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  word-spacing: 4px;
+  color: rgba(255,255,255,0.2);
+}
+
+%Transparent-Styles {
+  background: transparent;
+  border: transparent;
+  border-bottom: 2px solid rgba(255,255,255,0.2);
+}
+
 // App Styles
 
 .app-container {
@@ -51,23 +65,37 @@ body {
   .navigation-container {
     @extend %Row-Display;
     @extend %Full-Width-Height;
-    font-size: 22px;
-    font-weight: bold;
     justify-content: space-evenly;
     .dropdown-container {
-
+      justify-content: space-evenly;
+      @extend %User-Word-Style;
       .dropdown {
-
+        @extend %Transparent-Styles;
+        @extend %User-Word-Style;
+        color: rgba(255,255,255,0.5);
+        &:hover {
+          cursor: pointer;
+          background: rgba(255,255,255,0.8);
+          color: black;
+        }
       }
     }
     .input-field {
-      background: transparent;
-      border: transparent;
-      border-bottom: 2px solid rgba(255,255,255,0.2);
-      font-size: 22px;
-      font-weight: bold;
-      letter-spacing: 1px;
-      word-spacing: 4px;
+      @extend %Transparent-Styles;
+      @extend %User-Word-Style;
+    }
+    .user-btn {
+      @extend %Transparent-Styles;
+      @extend %User-Word-Style;
+      @extend %Row-Display;
+      border: 2px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.1);
+      margin-top: -10px;
+      &:hover {
+        cursor: pointer;
+        background: rgba(255,255,255,0.5);
+        color: black;
+      }
     }
   }
 };

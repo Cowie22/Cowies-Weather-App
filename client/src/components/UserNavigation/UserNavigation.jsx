@@ -1,4 +1,5 @@
 import React from 'react';
+import { WiDaySunny, WiShowers, WiThunderstorm, WiCloudy, WiSnow, WiSprinkle, WiDayHaze, WiSleet } from 'weather-icons-react';
 
 class UserNavigation extends React.Component {
   constructor(props) {
@@ -17,10 +18,10 @@ class UserNavigation extends React.Component {
   }
   render() {
     const { forecast, longitude, latitude } = this.state;
+    const ClearIcon = <WiDaySunny size={34} color='#ffb300' />
     return (
       <form className='navigation-container'>
         <label className='dropdown-container'>
-          Choose Forecast:
           <select name="forecast" value={forecast} onChange={this.handleChange} className='dropdown'>
             <option value="Today's Weather">Today's Weather</option>
             <option value="Five Day Forecast">Five Day Forecast</option>
@@ -33,7 +34,6 @@ class UserNavigation extends React.Component {
           value={longitude}
           onChange={this.handleChange}
           className='input-field'
-          style={{background: 'transparent', borderBottom: '2px solid rgba(255,255,255,0.2)'}}
         />
         <input
           type="text"
@@ -41,10 +41,9 @@ class UserNavigation extends React.Component {
           placeholder={'Insert Latitude'}
           value={latitude}
           onChange={this.handleChange}
-          style={{background: 'transparent', borderBottom: '2px solid rgba(255,255,255,0.2)'}}
           className='input-field'
         />
-        <input type="submit" value="Submit" />
+        <button className='user-btn'>Click For Weather {ClearIcon}</button>
       </form>
     )
   }
