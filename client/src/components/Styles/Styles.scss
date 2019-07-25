@@ -1,0 +1,27 @@
+body {
+  background: black;
+  color: white;
+  font-family: Helvetica, sans-serif;
+}
+
+// Shared Styles
+
+%Column-Display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+%Row-Display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+// App Styles
+
+.app-container {
+  @extend %Row-Display;
+}

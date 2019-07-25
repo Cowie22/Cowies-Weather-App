@@ -11,6 +11,32 @@ module.exports = {
         exclude: /node_modules/,
         use: ['babel-loader'],
       },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        loader: "eslint-loader",
+        options: {
+          emitError: true,
+          failOnError: true
+        },
+      },
+      {
+				test: /\.(scss)$/,
+				use: [{
+					loader: 'style-loader'
+				}, {
+					loader: 'css-loader'
+				}, {
+					loader: 'sass-loader'
+				}, {
+					loader: 'postcss-loader',
+					options: {
+						plugins: function () {
+							return [ require('autoprefixer')]
+						}
+					}
+				}]
+			}
     ],
   },
   resolve: {

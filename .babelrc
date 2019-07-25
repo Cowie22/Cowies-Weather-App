@@ -9,7 +9,7 @@
       "plugins": ["transform-es2015-modules-commonjs"],
     },
     "extends": {
-      "extends": "@gonimbly",
+      "extends": "gonimbly",
     },
     "production": {
       "presets": ["minify"]

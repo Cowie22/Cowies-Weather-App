@@ -1,5 +1,5 @@
 module.exports = {
-  extends: '@gonimbly',
+  "extends": '@gonimbly',
   "env": {
     "browser": true,
     "node": true,
