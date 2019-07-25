@@ -1,5 +1,5 @@
 module.exports = {
-  extends: 'airbnb',
+  extends: '@gonimbly',
   "env": {
     "browser": true,
     "node": true,
