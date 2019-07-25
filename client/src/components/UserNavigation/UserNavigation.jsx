@@ -1,5 +1,5 @@
 import React from 'react';
-import { WiDaySunny, WiShowers, WiThunderstorm, WiCloudy, WiSnow, WiSprinkle, WiDayHaze, WiSleet } from 'weather-icons-react';
+import { WiDaySunny } from 'weather-icons-react';
 
 class UserNavigation extends React.Component {
   constructor(props) {
