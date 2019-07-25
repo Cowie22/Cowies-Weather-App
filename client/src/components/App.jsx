@@ -10,8 +10,13 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div className="app-container">
-        <h1 className="header">COWIE'S WEATHER APP</h1>
+      <div className='app-container'>
+        <div className='header-container'>
+          <h1 className='header'>Cowie's Weather App</h1>
+        </div>
+        <div className='user-navigation-container'>
+
+        </div>
       </div>
     )
   }

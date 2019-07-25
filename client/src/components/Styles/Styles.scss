@@ -20,8 +20,32 @@ body {
   flex-direction: row;
 }
 
+%Full-Width-Height {
+  width: 100%;
+  height: 100%;
+}
+
 // App Styles
 
 .app-container {
   @extend %Row-Display;
-}
+  @extend %Full-Width-Height;
+  .header-container {
+    @extend %Row-Display;
+    @extend %Full-Width-Height;
+    background: rgba(255,255,255,0.2);
+    .header {
+      letter-spacing: 1px;
+      word-spacing: 10px;
+      font-weight: bold;
+    };
+  };
+};
+
+// User Navigation Styles
+
+.user-navigation-container {
+  @extend %Row-Display;
+  background: rgba(255,255,255,0.2);
+};
+
