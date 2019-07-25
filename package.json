@@ -15,6 +15,10 @@
       "eslint --fix",
       "git add"
     ],
+    "*.jsx": [
+      "eslint --fix",
+      "git add"
+    ],
     "*.{json,css,scss}": [
       "prettier --write",
       "git add"
