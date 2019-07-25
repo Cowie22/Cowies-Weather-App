@@ -28,7 +28,7 @@ body {
 // App Styles
 
 .app-container {
-  @extend %Row-Display;
+  @extend %Column-Display;
   @extend %Full-Width-Height;
   .header-container {
     @extend %Row-Display;
@@ -45,7 +45,30 @@ body {
 // User Navigation Styles
 
 .user-navigation-container {
-  @extend %Row-Display;
-  background: rgba(255,255,255,0.2);
+  @extend %Column-Display;
+  @extend %Full-Width-Height;
+  margin-top: 40px;
+  .navigation-container {
+    @extend %Row-Display;
+    @extend %Full-Width-Height;
+    font-size: 22px;
+    font-weight: bold;
+    justify-content: space-evenly;
+    .dropdown-container {
+
+      .dropdown {
+
+      }
+    }
+    .input-field {
+      background: transparent;
+      border: transparent;
+      border-bottom: 2px solid rgba(255,255,255,0.2);
+      font-size: 22px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      word-spacing: 4px;
+    }
+  }
 };
 
