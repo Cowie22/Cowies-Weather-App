@@ -11,10 +11,13 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../client/public')));
 
+
 const PORT = process.env.PORT || 2222;
 
-app.get('/weather', async function(req, res) {
-  const data = await axios.get(`https://www.metaweather.com/api/location/4118/`);
+
+app.get('/weather/:lat/:long', async function(req, res) {
+  const { lat, long } = req.params;
+  const data = await axios.get(`https://www.metaweather.com/api/location/search/?lattlong=36.96,-122.02`);
   console.log(data.data)
   res.send(JSON.stringify(data.data));
 });

@@ -13,8 +13,18 @@ class App extends React.Component {
   componentDidMount() {
     this.getWeatherData();
   }
-  getWeatherData() {
-    axios.get(`/weather`)
+  getWeatherData(lat, long) {
+    // Remember to authenticate the number, maybe include an example
+    // Maybe do a google map this would be cool...
+    // When you click on a google map you can probably pick up the long and lat
+    // Then user can press enter to get the data
+    // Do it... this will get you a job
+    // Just Do It.
+    // google.maps.event.addListener(map, 'click', function( event ){
+    // alert( "Latitude: "+event.latLng.lat()+" "+", longitude: "+event.latLng.lng() );
+    // });
+    // Make it work on google map click and user input
+    axios.get(`/weather/${lat}/${long}`)
       .then(res => {
         console.log(res)
         this.setState({
