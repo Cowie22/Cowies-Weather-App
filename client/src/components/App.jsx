@@ -9,11 +9,15 @@ class App extends React.Component {
     super(props);
     this.state = {
       weatherData: [],
+      currentLng: 0,
+      currentLat: 0,
     };
+    this.handleGetLngLat = this.handleGetLngLat.bind(this);
   }
   componentDidMount() {
     this.getWeatherData();
   }
+
   getWeatherData(lat, long) {
     // Remember to authenticate the number, maybe include an example
     // Maybe do a google map this would be cool...
@@ -36,6 +40,14 @@ class App extends React.Component {
         })
       })
   }
+
+  handleGetLngLat(event) {
+    this.setState({
+      currentLng: event.lat,
+      currentLat: event.lng,
+    })
+  }
+
   render() {
     return (
       <div className='app-container'>
@@ -49,7 +61,7 @@ class App extends React.Component {
         </div>
         <div className='map-container'>
           <Map
-          
+            handleGetLngLat={this.handleGetLngLat}
           />
         </div>
       </div>

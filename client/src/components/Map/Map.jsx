@@ -5,8 +5,16 @@ class Map extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      lat: 0,
+      lng: 0,
     }
+  }
+  handleClick(event) {
+    this.setState({
+      lat: event.latLng.lat(),
+      lng: event.latLng.lng(),
+    })
+    console.log(this.state.lat, this.state.lng)
   }
   render() {
     return (
@@ -25,6 +33,7 @@ class Map extends React.Component {
             top: '24%',
         }}
           yesIWantToUseGoogleMapApiInternals
+          onClick={(event) => this.props.handleGetLngLat(event)}
         >
         </GoogleMapReact>
       </div>
