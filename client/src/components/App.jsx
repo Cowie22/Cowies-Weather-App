@@ -3,6 +3,7 @@ import './Styles/Styles.scss';
 import axios from 'axios';
 import UserNavigation from './UserNavigation/UserNavigation.jsx';
 import Map from './Map/Map.jsx';
+import Weather from './Weather/Weather.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -15,16 +16,15 @@ class App extends React.Component {
     };
     this.handleGetLngLat = this.handleGetLngLat.bind(this);
     this.handleManualVsMapInput = this.handleManualVsMapInput.bind(this);
-  }
-  componentDidMount() {
-    // this.getWeatherData();
+    this.getWeatherData = this.getWeatherData.bind(this);
   }
 
   getWeatherData(lat, lng) {
     // Remember to authenticate the number, maybe include an example
+    // Typically this call would be made in component did mount, however for the purposes
+    // Of this app is is called when the user requests weather data
     axios.get(`/weather/${lat}/${lng}`)
       .then(res => {
-        console.log(res.data)
         this.setState({
           weatherData: res.data,
         })
@@ -47,7 +47,7 @@ class App extends React.Component {
 
   render() {
     const { weatherData, currentLng, currentLat, mapClicked } = this.state;
-    console.log(weatherData)
+    console.log('weather', this.state.weatherData)
     return (
       <div className='app-container'>
         <div className='header-container'>
@@ -67,6 +67,19 @@ class App extends React.Component {
             handleGetLngLat={this.handleGetLngLat}
           />
         </div>
+        {
+        // Conditional to only display weather when the user requests it and to avoid errors
+        weatherData.length > 0 ?
+        <div className='weather-container'>
+          <Weather
+            weatherData={weatherData}
+          />
+        </div>
+        :
+        <div>
+
+        </div>
+        }
       </div>
     )
   }

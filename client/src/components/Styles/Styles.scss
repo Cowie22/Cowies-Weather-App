@@ -110,3 +110,15 @@ body {
     @extend %Row-Display;
   }
 }
+
+// Weather Styles
+
+.weather-container {
+  @extend %Row-Display;
+  .inner-weather-container {
+    @extend %Column-Display;
+    .weather-city-title {
+      @extend %User-Word-Style;
+    }
+  }
+}
