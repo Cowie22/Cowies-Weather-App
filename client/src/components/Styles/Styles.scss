@@ -20,8 +20,93 @@ body {
   flex-direction: row;
 }
 
+%Full-Width-Height {
+  width: 100%;
+  height: 100%;
+}
+
+%User-Word-Style {
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  word-spacing: 4px;
+  color: rgba(255,255,255,0.2);
+}
+
+%Transparent-Styles {
+  background: transparent;
+  border: transparent;
+  border-bottom: 2px solid rgba(255,255,255,0.2);
+}
+
 // App Styles
 
 .app-container {
+  @extend %Column-Display;
+  @extend %Full-Width-Height;
+  .header-container {
+    @extend %Row-Display;
+    @extend %Full-Width-Height;
+    background: rgba(255,255,255,0.2);
+    .header {
+      letter-spacing: 1px;
+      word-spacing: 10px;
+      font-weight: bold;
+    };
+  };
+};
+
+// User Navigation Styles
+
+.user-navigation-container {
+  @extend %Column-Display;
+  @extend %Full-Width-Height;
+  margin-top: 40px;
+  .navigation-container {
+    @extend %Row-Display;
+    @extend %Full-Width-Height;
+    justify-content: space-evenly;
+    .dropdown-container {
+      justify-content: space-evenly;
+      @extend %User-Word-Style;
+      .dropdown {
+        @extend %Transparent-Styles;
+        @extend %User-Word-Style;
+        color: rgba(255,255,255,0.5);
+        &:hover {
+          cursor: pointer;
+          background: rgba(255,255,255,0.8);
+          color: black;
+        }
+      }
+    }
+    .input-field {
+      @extend %Transparent-Styles;
+      @extend %User-Word-Style;
+    }
+    .user-btn {
+      @extend %Transparent-Styles;
+      @extend %User-Word-Style;
+      @extend %Row-Display;
+      border: 2px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.1);
+      margin-top: -10px;
+      &:hover {
+        cursor: pointer;
+        background: rgba(255,255,255,0.5);
+        color: black;
+      }
+    }
+  }
+};
+
+// Map Styles
+
+.map-container {
   @extend %Row-Display;
+  height: 100px;
+  width: 100px;
+  .inner-map-container {
+    @extend %Row-Display;
+  }
 }
