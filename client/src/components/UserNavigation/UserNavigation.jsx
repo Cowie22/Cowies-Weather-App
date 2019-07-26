@@ -18,9 +18,11 @@ class UserNavigation extends React.Component {
   }
   render() {
     const { forecast, longitude, latitude } = this.state;
-    const { currentLng, currentLat, handleManualVsMapInput, mapClicked } = this.props;
+    const { currentLng, currentLat, handleManualVsMapInput, mapClicked, getWeatherData } = this.props;
     const ClearIcon = <WiDaySunny size={34} color='#ffb300' />
-    console.log(mapClicked)
+    const latInput = document.getElementById('lat');
+    const lngInput = document.getElementById('lng');
+    console.log(lngInput)
     return (
       <form className='navigation-container'>
         <label className='dropdown-container'>
@@ -40,6 +42,7 @@ class UserNavigation extends React.Component {
           // Thus allowing both to occur on the same input fields
           onClick={() => handleManualVsMapInput()}
           className='input-field'
+          id='lng'
         />
         <input
           type="text"
@@ -49,8 +52,14 @@ class UserNavigation extends React.Component {
           onChange={this.handleChange}
           onClick={() => handleManualVsMapInput()}
           className='input-field'
+          id='lat'
         />
-        <button className='user-btn'>Click For Weather {ClearIcon}</button>
+        <button
+          className='user-btn'
+          onClick={() => getWeatherData(latInput.value, lngInput.value)}
+        >
+        Click For Weather {ClearIcon}
+        </button>
       </form>
     )
   }

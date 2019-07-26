@@ -17,17 +17,14 @@ class App extends React.Component {
     this.handleManualVsMapInput = this.handleManualVsMapInput.bind(this);
   }
   componentDidMount() {
-    this.getWeatherData();
+    // this.getWeatherData();
   }
 
-  getWeatherData(lat, long) {
+  getWeatherData(lat, lng) {
     // Remember to authenticate the number, maybe include an example
-
-    // AIzaSyDWko97eVmFE7qTqFihsNitf-upOZeSks4
-
-    axios.get(`/weather/${lat}/${long}`)
+    axios.get(`/weather/${lat}/${lng}`)
       .then(res => {
-        console.log(res)
+        console.log(res.data)
         this.setState({
           weatherData: res.data,
         })
@@ -61,6 +58,7 @@ class App extends React.Component {
             currentLat={currentLat}
             mapClicked={mapClicked}
             handleManualVsMapInput={this.handleManualVsMapInput}
+            getWeatherData={this.getWeatherData}
           />
         </div>
         <div className='map-container'>
