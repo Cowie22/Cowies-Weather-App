@@ -11,30 +11,20 @@ class App extends React.Component {
       weatherData: [],
       currentLng: 0,
       currentLat: 0,
+      mapClicked: false,
     };
     this.handleGetLngLat = this.handleGetLngLat.bind(this);
+    this.handleManualVsMapInput = this.handleManualVsMapInput.bind(this);
   }
   componentDidMount() {
-    this.getWeatherData();
+    // this.getWeatherData();
   }
 
-  getWeatherData(lat, long) {
+  getWeatherData(lat, lng) {
     // Remember to authenticate the number, maybe include an example
-    // Maybe do a google map this would be cool...
-    // When you click on a google map you can probably pick up the long and lat
-    // Then user can press enter to get the data
-    // Do it... this will get you a job
-    // Just Do It.
-    // google.maps.event.addListener(map, 'click', function( event ){
-    // alert( "Latitude: "+event.latLng.lat()+" "+", longitude: "+event.latLng.lng() );
-    // });
-    // Make it work on google map click and user input
-
-    // AIzaSyDWko97eVmFE7qTqFihsNitf-upOZeSks4
-
-    axios.get(`/weather/${lat}/${long}`)
+    axios.get(`/weather/${lat}/${lng}`)
       .then(res => {
-        console.log(res)
+        console.log(res.data)
         this.setState({
           weatherData: res.data,
         })
@@ -43,12 +33,20 @@ class App extends React.Component {
 
   handleGetLngLat(event) {
     this.setState({
-      currentLng: event.lat,
-      currentLat: event.lng,
+      currentLng: event.lat.toFixed(4),
+      currentLat: event.lng.toFixed(4),
+      mapClicked: true,
+    })
+  }
+
+  handleManualVsMapInput() {
+    this.setState({
+      mapClicked: false,
     })
   }
 
   render() {
+    const { weatherData, currentLng, currentLat, mapClicked } = this.state;
     return (
       <div className='app-container'>
         <div className='header-container'>
@@ -56,7 +54,11 @@ class App extends React.Component {
         </div>
         <div className='user-navigation-container'>
           <UserNavigation
-          
+            currentLng={currentLng}
+            currentLat={currentLat}
+            mapClicked={mapClicked}
+            handleManualVsMapInput={this.handleManualVsMapInput}
+            getWeatherData={this.getWeatherData}
           />
         </div>
         <div className='map-container'>
