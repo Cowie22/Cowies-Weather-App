@@ -9,13 +9,6 @@ class Map extends React.Component {
       lng: 0,
     }
   }
-  handleClick(event) {
-    this.setState({
-      lat: event.latLng.lat(),
-      lng: event.latLng.lng(),
-    })
-    console.log(this.state.lat, this.state.lng)
-  }
   render() {
     return (
       <div className='inner-map-container'>

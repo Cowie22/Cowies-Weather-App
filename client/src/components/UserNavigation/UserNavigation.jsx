@@ -18,7 +18,9 @@ class UserNavigation extends React.Component {
   }
   render() {
     const { forecast, longitude, latitude } = this.state;
+    const { currentLng, currentLat, handleManualVsMapInput, mapClicked } = this.props;
     const ClearIcon = <WiDaySunny size={34} color='#ffb300' />
+    console.log(mapClicked)
     return (
       <form className='navigation-container'>
         <label className='dropdown-container'>
@@ -31,16 +33,21 @@ class UserNavigation extends React.Component {
           type="text"
           name="longitude"
           placeholder={'Insert Longitude'}
-          value={longitude}
+          // Conditional that allows the user to either click the map for longitude or manually enter it
+          value={ mapClicked ? currentLng : longitude }
           onChange={this.handleChange}
+          // Determines whether the user is clicking the map or manually entering longitude and latitude
+          // Thus allowing both to occur on the same input fields
+          onClick={() => handleManualVsMapInput()}
           className='input-field'
         />
         <input
           type="text"
           name="latitude"
           placeholder={'Insert Latitude'}
-          value={latitude}
+          value={ mapClicked ? currentLat : latitude }
           onChange={this.handleChange}
+          onClick={() => handleManualVsMapInput()}
           className='input-field'
         />
         <button className='user-btn'>Click For Weather {ClearIcon}</button>
