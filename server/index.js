@@ -27,7 +27,6 @@ app.get('/weather/:lat/:lng', async function(req, res) {
   const getLocation = await axios.get(`https://www.metaweather.com/api/location/search/?lattlong=${lat},${lng}`);
   const locationID = getLocation.data[0].woeid;
   const weatherData = await axios.get(`https://www.metaweather.com/api/location/${locationID}`);
-  console.log('data', weatherData.data);
   res.send(JSON.stringify(weatherData.data));
 });
 

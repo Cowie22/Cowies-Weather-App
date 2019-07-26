@@ -33,8 +33,8 @@ class App extends React.Component {
 
   handleGetLngLat(event) {
     this.setState({
-      currentLng: event.lat.toFixed(4),
-      currentLat: event.lng.toFixed(4),
+      currentLng: event.lng.toFixed(4),
+      currentLat: event.lat.toFixed(4),
       mapClicked: true,
     })
   }
@@ -47,6 +47,7 @@ class App extends React.Component {
 
   render() {
     const { weatherData, currentLng, currentLat, mapClicked } = this.state;
+    console.log(weatherData)
     return (
       <div className='app-container'>
         <div className='header-container'>

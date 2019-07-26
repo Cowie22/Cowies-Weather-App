@@ -33,6 +33,16 @@ class UserNavigation extends React.Component {
         </label>
         <input
           type="text"
+          name="latitude"
+          placeholder={'Insert Latitude'}
+          value={ mapClicked ? currentLat : latitude }
+          onChange={this.handleChange}
+          onClick={() => handleManualVsMapInput()}
+          className='input-field'
+          id='lat'
+        />
+        <input
+          type="text"
           name="longitude"
           placeholder={'Insert Longitude'}
           // Conditional that allows the user to either click the map for longitude or manually enter it
@@ -44,19 +54,12 @@ class UserNavigation extends React.Component {
           className='input-field'
           id='lng'
         />
-        <input
-          type="text"
-          name="latitude"
-          placeholder={'Insert Latitude'}
-          value={ mapClicked ? currentLat : latitude }
-          onChange={this.handleChange}
-          onClick={() => handleManualVsMapInput()}
-          className='input-field'
-          id='lat'
-        />
         <button
           className='user-btn'
-          onClick={() => getWeatherData(latInput.value, lngInput.value)}
+          onClick={(event) => {
+            event.preventDefault();
+            getWeatherData(latInput.value, lngInput.value)}
+          }
         >
         Click For Weather {ClearIcon}
         </button>
