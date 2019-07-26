@@ -58,7 +58,8 @@ class UserNavigation extends React.Component {
           className='user-btn'
           onClick={(event) => {
             event.preventDefault();
-            getWeatherData(latInput.value, lngInput.value)}
+            getWeatherData(latInput.value, lngInput.value);
+            }
           }
         >
         Click For Weather {SunnyIcon}

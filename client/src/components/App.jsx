@@ -20,7 +20,6 @@ class App extends React.Component {
   }
 
   getWeatherData(lat, lng) {
-    // Remember to authenticate the number, maybe include an example
     // Typically this call would be made in component did mount, however for the purposes
     // Of this app is is called when the user requests weather data
     axios.get(`/weather/${lat}/${lng}`)
@@ -31,6 +30,9 @@ class App extends React.Component {
       })
   }
 
+  // When a user clicks the map, they will get the lng/lat and will be the input fields will display the results
+  // In combination with the function below, it allows the input fields to have values from different states,
+  // Either from the map, or manual user input.  Hence the use mapClicked state
   handleGetLngLat(event) {
     this.setState({
       currentLng: event.lng.toFixed(4),
@@ -47,7 +49,7 @@ class App extends React.Component {
 
   render() {
     const { weatherData, currentLng, currentLat, mapClicked } = this.state;
-    console.log('weather', this.state.weatherData)
+    console.log('weather', weatherData)
     return (
       <div className='app-container'>
         <div className='header-container'>
@@ -62,24 +64,27 @@ class App extends React.Component {
             getWeatherData={this.getWeatherData}
           />
         </div>
-        <div className='map-container'>
-          <Map
-            handleGetLngLat={this.handleGetLngLat}
-          />
+        <div className='lower-app-container'>
+          <div className='map-container'>
+            <Map
+              handleGetLngLat={this.handleGetLngLat}
+            />
+          </div>
+          {console.log(weatherData.length)}
+          {
+          // Conditional to only display weather when the user requests it and to avoid errors
+          weatherData.consolidated_weather ?
+          <div className='weather-container'>
+            <Weather
+              weatherData={weatherData}
+            />
+          </div>
+          :
+          <div className='weather-container'>
+            {/* <h1>Or Click Map</h1> */}
+          </div>
+          }
         </div>
-        {
-        // Conditional to only display weather when the user requests it and to avoid errors
-        weatherData.length > 0 ?
-        <div className='weather-container'>
-          <Weather
-            weatherData={weatherData}
-          />
-        </div>
-        :
-        <div>
-
-        </div>
-        }
       </div>
     )
   }

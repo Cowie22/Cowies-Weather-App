@@ -19,15 +19,17 @@ class Map extends React.Component {
           defaultZoom={0}
           style={{
             color: "white",
-            height: 500,
+            height: 600,
             width: 1000,
             position: "fixed",
-            zIndex: -10,
-            top: "24%"
+            zIndex: 10,
+            top: "24%",
+            right: "28%"
           }}
           yesIWantToUseGoogleMapApiInternals
           onClick={event => this.props.handleGetLngLat(event)}
-        ></GoogleMapReact>
+        >
+      </GoogleMapReact>
       </div>
     );
   }

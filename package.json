@@ -46,6 +46,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-icons": "^3.7.0",
+    "react-reveal": "^1.2.2",
     "sass-loader": "^7.1.0",
     "weather-icons-react": "^1.2.0",
     "webpack": "^4.35.0",
