@@ -2,6 +2,7 @@ import React from 'react';
 import './Styles/Styles.scss';
 import axios from 'axios';
 import UserNavigation from './UserNavigation/UserNavigation.jsx';
+import Map from './Map/Map.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -24,6 +25,9 @@ class App extends React.Component {
     // alert( "Latitude: "+event.latLng.lat()+" "+", longitude: "+event.latLng.lng() );
     // });
     // Make it work on google map click and user input
+
+    // AIzaSyDWko97eVmFE7qTqFihsNitf-upOZeSks4
+
     axios.get(`/weather/${lat}/${long}`)
       .then(res => {
         console.log(res)
@@ -40,6 +44,11 @@ class App extends React.Component {
         </div>
         <div className='user-navigation-container'>
           <UserNavigation
+          
+          />
+        </div>
+        <div className='map-container'>
+          <Map
           
           />
         </div>

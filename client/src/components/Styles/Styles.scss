@@ -100,3 +100,13 @@ body {
   }
 };
 
+// Map Styles
+
+.map-container {
+  @extend %Row-Display;
+  height: 100px;
+  width: 100px;
+  .inner-map-container {
+    @extend %Row-Display;
+  }
+}
