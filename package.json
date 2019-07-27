@@ -8,7 +8,7 @@
     "react-dev": "webpack -d --watch",
     "react-p": "webpack -p",
     "start": "node server/index.js",
-    "postinstall": "webpack -p && mysql --host=us-cdbr-east.cleardb.com --user=b7cf609352ea53 --password=83301934 --reconnect heroku_f32124548e30fc0 < schema.sql",
+    "postinstall": "webpack -p",
     "server": "nodemon server/index.js"
   },
   "lint-staged": {
