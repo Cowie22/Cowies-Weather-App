@@ -27,6 +27,7 @@ class Map extends React.Component {
             right: "28%"
           }}
           yesIWantToUseGoogleMapApiInternals
+          // Gets lat/lng from the map on user click
           onClick={event => this.props.handleGetLngLat(event)}
         >
       </GoogleMapReact>

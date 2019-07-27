@@ -29,26 +29,42 @@ const PORT = process.env.PORT || 2222;
 
 app.get('/weather/:lat/:lng', async function(req, res) {
   const { lat, lng } = req.params;
-  const getLocation = await axios.get(`https://www.metaweather.com/api/location/search/?lattlong=${lat},${lng}`);
-  const locationID = getLocation.data[0].woeid;
-  const weatherData = await axios.get(`https://www.metaweather.com/api/location/${locationID}`);
-  res.send(JSON.stringify(weatherData.data));
+  let locationID;
+  try {
+    const getLocation = await axios.get(`https://www.metaweather.com/api/location/search/?lattlong=${lat},${lng}`);
+    locationID = getLocation.data[0].woeid;
+  } catch(err) {
+    res.send(err)
+  }
+  try {
+    const weatherData = await axios.get(`https://www.metaweather.com/api/location/${locationID}`);
+    res.send(JSON.stringify(weatherData.data));
+  } catch(err) {
+    res.send(err)
+  }
 });
 
 // Get and Post to the database for cities
 // Get requests ensures that only the ten most recent searches are displayed to the user
-// Otherwise the UI dropdown would be far too long
+// Otherwise the UI dropdown would be far too long.
 app.get('/city', async function(req, res) {
-  const getCityInfo = await getAllCities();
-  let reducedCityInfo = getCityInfo[0].slice(getCityInfo[0].length - 10, getCityInfo[0].length);
-  console.log('cityinfo', reducedCityInfo)
-  res.send(reducedCityInfo)
+  try {
+    const getCityInfo = await getAllCities();
+    let reducedCityInfo = getCityInfo[0].slice(getCityInfo[0].length - 10, getCityInfo[0].length).reverse();
+    res.send(reducedCityInfo);
+  } catch(err) {
+    res.send(err);
+  }
 })
 
 app.post('/city', async function(req, res) {
   const info = req.body;
-  const postCityInfo = await addCity(info);
-  res.send(postCityInfo)
+  try {
+    const postCityInfo = await addCity(info);
+    res.send(postCityInfo)
+  } catch(err) {
+    res.send(err);
+  }
 })
 
 app.listen(PORT, () => {
