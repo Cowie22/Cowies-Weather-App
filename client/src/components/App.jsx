@@ -56,6 +56,7 @@ class App extends React.Component {
   getCity() {
     axios.get(`/city`)
       .then(res => {
+        console.log(res.data)
         this.setState({
           cities: res.data,
         })

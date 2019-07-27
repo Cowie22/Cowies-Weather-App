@@ -25,3 +25,7 @@ module.exports = {
 // mysql://b8397969cc5e06:969fc074@us-cdbr-iron-east-02.cleardb.net/heroku_67c5b230635acbd?reconnect=true
 
 // mysql --host=us-cdbr-east.cleardb.com --user=b8397969cc5e06 --password=969fc074 --reconnect heroku_67c5b230635acbd < schema.sql
+
+// mysql://root:Courtcowie22@127.0.0.1/omni_dev?encoding=utf8
+
+// mysql://b8397969cc5e06:969fc074@127.0.0.1/omni_dev?encoding=utf8
