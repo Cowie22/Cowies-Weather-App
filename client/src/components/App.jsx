@@ -94,6 +94,7 @@ class App extends React.Component {
   render() {
     const { weatherData, currentLng, currentLat, mapClicked, cities } = this.state;
     return (
+      cities.length > 0 ?
       <div className='app-container'>
         <div className='header-container'>
           <h1 className='header'>Ryan Cowie's Weather App</h1>
@@ -129,6 +130,10 @@ class App extends React.Component {
           </div>
           }
         </div>
+      </div>
+      :
+      <div>
+        ...LOADING
       </div>
     )
   }
