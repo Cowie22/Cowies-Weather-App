@@ -10,12 +10,24 @@ class UserNavigation extends React.Component {
       latitude: '',
     }
     this.handleChange = this.handleChange.bind(this);
+    this.handleRecentCityClick = this.handleRecentCityClick.bind(this);
   }
   // Allows handle change to be used by all three input fields
   handleChange(event) {
     let newState = {};
     newState[event.target.name] = event.target.value;
     this.setState(newState);
+  }
+
+  handleRecentCityClick(event) {
+    let cityValues = (event.target.value).split(',')
+    let currentLat = cityValues[1];
+    let currentLng = cityValues[2];
+    this.setState({
+      city: event.target.value,
+      latitude: currentLat,
+      longitude: currentLng,
+    })
   }
   render() {
     const { city, longitude, latitude } = this.state;
@@ -24,8 +36,17 @@ class UserNavigation extends React.Component {
     const latInput = document.getElementById('lat');
     const lngInput = document.getElementById('lng');
     let dropdownOptions = cities.map((city, i) => {
+      let valueArray = [city.name, city.latitude, city.longitude];
       return (
-        <option value={city.name} key={i}>{city.name}</option>
+        <option
+          value={valueArray}
+          name={city.name}
+          key={i}
+          lat={city.latitude}
+          lng={city.longitude}
+          >
+          {city.name}
+        </option>
       )
     })
     return (
@@ -34,9 +55,10 @@ class UserNavigation extends React.Component {
           <select
             name="city"
             value={city}
-            onChange={this.handleChange}
+            onChange={this.handleRecentCityClick}
             default='Recently Searched'
             className='dropdown'
+            onClick={() => handleManualVsMapInput()}
           >
             <option value={'Recently Searched'} key={0}>Recently Searched</option>
             {dropdownOptions}
