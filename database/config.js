@@ -1,36 +1,18 @@
-// module.exports = {
-//   host: 'localhost',
-//   user: 'root',
-//   password: 'Courtcowie22',
-//   database: 'weather'
-// };
-
 module.exports = {
-  host: 'us-cdbr-iron-east-02.cleardb.net',
-  user: 'b8397969cc5e06',
-  password: '969fc074',
-  database: 'heroku_67c5b230635acbd'
+  host: 'localhost',
+  user: 'root',
+  password: 'Courtcowie22',
+  database: 'weather'
 };
 
-//test
+// module.exports = {
+//   host: 'us-cdbr-iron-east-02.cleardb.net',
+//   user: 'b8397969cc5e06',
+//   password: '969fc074',
+//   database: 'heroku_67c5b230635acbd'
+// };
 
-// mysql://b8397969cc5e06:969fc074@us-cdbr-iron-east-02.cleardb.net/heroku_67c5b230635acbd?reconnect=true
 
-//mysql://b7cf609352ea53:83301934@us-cdbr-iron-east-02.cleardb.net/heroku_f32124548e30fc0?reconnect=true
 
-//SHA256:NqBgP5aHjFq7aduT+jAO4BRLoEkTMZHNSpiW7wNnztM rjcowie1@gmail.com
 
-//SHA256:GWjXmXcJARqOcqFIth3UFHhFCn7ZeUoQhpsaTJQIDEY ryancowie@Ryans-Pro.hsd1.ca.comcast.net
-
-// vast-brook-43149
-
-// mysql://b8397969cc5e06:969fc074@us-cdbr-iron-east-02.cleardb.net/heroku_67c5b230635acbd?reconnect=true
-
-// mysql --host=us-cdbr-east.cleardb.com --user=b8397969cc5e06 --password=969fc074 --reconnect heroku_67c5b230635acbd < schema.sql
-
-// mysql://root:Courtcowie22@127.0.0.1/omni_dev?encoding=utf8
-
-// mysql://b8397969cc5e06:969fc074@127.0.0.1/omni_dev?encoding=utf8
-
-// Username:	b8397969cc5e06
-// Password:	969fc074 (Reset)
+// The current database set up is for heroku purposes.  If you want to use locally, use the first config

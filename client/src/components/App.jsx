@@ -56,7 +56,6 @@ class App extends React.Component {
   getCity() {
     axios.get(`/city`)
       .then(res => {
-        console.log(res.data)
         this.setState({
           cities: res.data,
         })
@@ -95,6 +94,8 @@ class App extends React.Component {
   render() {
     const { weatherData, currentLng, currentLat, mapClicked, cities } = this.state;
     return (
+      // This conditional was a last minute add on for heroku.  It ensures that the first GET request to the
+      // Database is completed before everything below can be rendered.
       cities.length > 0 ?
       <div className='app-container'>
         <div className='header-container'>
