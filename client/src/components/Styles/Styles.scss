@@ -39,6 +39,12 @@ body {
   border-bottom: 2px solid rgba(255,255,255,0.2);
 }
 
+%Weather-Text-Styles {
+  font-size: 17px;
+  font-weight: bold;
+  color: black;
+}
+
 // App Styles
 
 .app-container {
@@ -100,13 +106,75 @@ body {
   }
 };
 
-// Map Styles
+// Map and Weather Styles
 
-.map-container {
+.lower-app-container {
   @extend %Row-Display;
-  height: 100px;
-  width: 100px;
-  .inner-map-container {
+  .map-container {
     @extend %Row-Display;
+    height: 100px;
+    width: 100px;
+    .inner-map-container {
+      @extend %Row-Display;
+      justify-content: flex-end;
+    }
+  }
+  .weather-container {
+    position: absolute;
+    @extend %Column-Display;
+    left: 77%;
+    top: 18%;
+    .inner-weather-container {
+      @extend %Column-Display;
+      .weather-city-title {
+        @extend %User-Word-Style;
+        font-size: 18px;
+      }
+      .forecast-container {
+        @extend %Column-Display;
+        margin-top: -20px;
+        .inner-forecast-container {
+          width: 200px;
+          height: 200px;
+          border-radius: 50%;
+          .day-container {
+            @extend %Column-Display;
+            .date {
+              @extend %Weather-Text-Styles;
+            }
+            .weather-type {
+              @extend %Weather-Text-Styles;
+              color: white;
+              margin-top: -14px;
+            }
+            .weather-logo {
+              margin-top: -8px;
+              height: 38px;
+              width: 38px;
+            }
+          }
+          .temp-container {
+            @extend %Row-Display;
+            margin-left: 11px;
+            .temp {
+              @extend %Weather-Text-Styles;
+              @extend %Column-Display;
+              margin-right: -10px;
+              margin-top: -2px;
+            }
+          }
+          .misc-weather-container {
+            @extend %Column-Display;
+            margin-top: -4px;
+            .misc-weather {
+              @extend %Weather-Text-Styles;
+              @extend %Row-Display;
+              margin-top: -14px;
+              color: white;
+            }
+          }
+        }
+      }
+    }
   }
 }
