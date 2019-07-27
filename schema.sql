@@ -4,6 +4,11 @@ CREATE DATABASE weather;
 
 USE weather;
 
+-- Very simple table, mostly implemented to demonstrate backend experience for this challenge.
+-- There is definitely potential to utilize the database further, especially to make the app
+-- More optimized. Such as, once the weather is requested for a particualr city, all of the pertinent information
+-- Could be saved in the database and returned from the database, instead of having to go the API every time.
+
 CREATE TABLE city (
   id int NOT NULL AUTO_INCREMENT,
   name varchar(50) NOT NULL,
@@ -11,7 +16,6 @@ CREATE TABLE city (
   longitude int NOT NULL,
   PRIMARY KEY (id)
 );
-
 
 
 

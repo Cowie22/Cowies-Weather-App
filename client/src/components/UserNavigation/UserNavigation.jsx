@@ -5,14 +5,14 @@ class UserNavigation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      city: `Recently Searched`,
+      city: 'Recently Searched',
       longitude: '',
       latitude: '',
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleRecentCityClick = this.handleRecentCityClick.bind(this);
   }
-  // Allows handle change to be used by all three input fields
+  // Allows handle change to be used by both text input fields
   handleChange(event) {
     let newState = {};
     newState[event.target.name] = event.target.value;
@@ -22,7 +22,7 @@ class UserNavigation extends React.Component {
   // In order to extract the longitude and latitude out of each dropdown option,
   // I put all of the values into a an array as the option is being created (below)
   // And then split them out here.
-  // Clicking a value in the dropdown will give you the saved lng/lat from the database
+  // Clicking a value in the dropdown will give you the saved lat/lng from the database
   // And clicking the weather button will display the weather
   handleRecentCityClick(event) {
     let cityValues = (event.target.value).split(',')
@@ -38,6 +38,7 @@ class UserNavigation extends React.Component {
     const { city, longitude, latitude } = this.state;
     const { currentLng, currentLat, handleManualVsMapInput, mapClicked, getWeatherData, cities } = this.props;
     const SunnyIcon = <WiDaySunny size={34} color='#ffb300' />
+    // Grabs the values form the text input fields, so the request can be made to the API
     const latInput = document.getElementById('lat');
     const lngInput = document.getElementById('lng');
 
@@ -49,8 +50,6 @@ class UserNavigation extends React.Component {
           value={valueArray}
           name={city.name}
           key={i}
-          lat={city.latitude}
-          lng={city.longitude}
           >
           {city.name}
         </option>
@@ -65,6 +64,7 @@ class UserNavigation extends React.Component {
             onChange={this.handleRecentCityClick}
             default='Recently Searched'
             className='dropdown'
+            // Ensures that the lat/lng input fields can be utilized by the map and dropdown/manual input
             onClick={() => handleManualVsMapInput()}
           >
             <option value={'Recently Searched'} key={0}>Recently Searched</option>
@@ -78,8 +78,8 @@ class UserNavigation extends React.Component {
           // Conditional that allows the user to either click the map for longitude or manually enter it
           value={ mapClicked ? currentLat : latitude }
           onChange={this.handleChange}
-          // Determines whether the user is clicking the map or manually entering longitude and latitude
-          // Thus allowing both to occur on the same input fields
+          // Determines whether the user is clicking the map or manually entering/selecting longitude and latitude
+          // Thus allowing all three to occur on the same text input fields
           onClick={() => handleManualVsMapInput()}
           className='input-field'
           id='lat'
@@ -98,6 +98,7 @@ class UserNavigation extends React.Component {
           className='user-btn'
           onClick={(event) => {
               event.preventDefault();
+              // Gets the data from the API on user request
               getWeatherData(latInput.value, lngInput.value);
             }
           }

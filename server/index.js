@@ -17,7 +17,7 @@ const PORT = process.env.PORT || 2222;
 
 
 // In order to work the API there are a few restrictions
-// 1. their are CORS errors, so the API call has to be made from the server using something like Express
+// 1. There are CORS errors, so the API call has to be made from the server using something like Express
 // While using the cors middleware
 // 2. One must make two requests to the API, unless they magically know an areas 'woeid'.  This first call
 // Gives you the ten closest areas to the given longitude and latitude from the client.  The closest area
@@ -25,30 +25,46 @@ const PORT = process.env.PORT || 2222;
 
 // **** Normally I would have separated these two request to make the app more optimized, however the
 // API docs do not want you to make too many request, and making a request every time a person clicks the
-// Map or types in the input field, would go way over the recommended amount
+// Map or types in the input field, would go way over the recommended amount.
 
 app.get('/weather/:lat/:lng', async function(req, res) {
   const { lat, lng } = req.params;
-  const getLocation = await axios.get(`https://www.metaweather.com/api/location/search/?lattlong=${lat},${lng}`);
-  const locationID = getLocation.data[0].woeid;
-  const weatherData = await axios.get(`https://www.metaweather.com/api/location/${locationID}`);
-  res.send(JSON.stringify(weatherData.data));
+  let locationID;
+  try {
+    const getLocation = await axios.get(`https://www.metaweather.com/api/location/search/?lattlong=${lat},${lng}`);
+    locationID = getLocation.data[0].woeid;
+  } catch(err) {
+    res.send(err)
+  }
+  try {
+    const weatherData = await axios.get(`https://www.metaweather.com/api/location/${locationID}`);
+    res.send(JSON.stringify(weatherData.data));
+  } catch(err) {
+    res.send(err)
+  }
 });
 
-// Get and post to the database for cities
+// Get and Post to the database for cities
 // Get requests ensures that only the ten most recent searches are displayed to the user
-// Otherwise the UI dropdown would be far too long
+// Otherwise the UI dropdown would be far too long.
 app.get('/city', async function(req, res) {
-  const getCityInfo = await getAllCities();
-  let reducedCityInfo = getCityInfo[0].slice(getCityInfo[0].length - 10, getCityInfo[0].length);
-  console.log('cityinfo', reducedCityInfo)
-  res.send(reducedCityInfo)
+  try {
+    const getCityInfo = await getAllCities();
+    let reducedCityInfo = getCityInfo[0].slice(getCityInfo[0].length - 10, getCityInfo[0].length).reverse();
+    res.send(reducedCityInfo);
+  } catch(err) {
+    res.send(err);
+  }
 })
 
 app.post('/city', async function(req, res) {
   const info = req.body;
-  const postCityInfo = await addCity(info);
-  res.send(postCityInfo)
+  try {
+    const postCityInfo = await addCity(info);
+    res.send(postCityInfo)
+  } catch(err) {
+    res.send(err);
+  }
 })
 
 app.listen(PORT, () => {
