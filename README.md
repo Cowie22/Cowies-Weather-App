@@ -20,8 +20,11 @@ The values for this dropdown are saved in the database and the server request co
 ### Requirements
 
 Node 10.15.0
+
 Nodemon
+
 Webpack
+
 MySQL 5.7
 
 ### Usage
