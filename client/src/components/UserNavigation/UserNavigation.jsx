@@ -5,11 +5,12 @@ class UserNavigation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      forecast: `Today's Weather`,
+      city: `Recently Searched`,
       longitude: '',
       latitude: '',
     }
     this.handleChange = this.handleChange.bind(this);
+    this.handleRecentCityClick = this.handleRecentCityClick.bind(this);
   }
   // Allows handle change to be used by all three input fields
   handleChange(event) {
@@ -17,18 +18,57 @@ class UserNavigation extends React.Component {
     newState[event.target.name] = event.target.value;
     this.setState(newState);
   }
+
+  // In order to extract the longitude and latitude out of each dropdown option,
+  // I put all of the values into a an array as the option is being created (below)
+  // And then split them out here.
+  // Clicking a value in the dropdown will give you the saved lng/lat from the database
+  // And clicking the weather button will display the weather
+  handleRecentCityClick(event) {
+    let cityValues = (event.target.value).split(',')
+    let currentLat = cityValues[1];
+    let currentLng = cityValues[2];
+    this.setState({
+      city: event.target.value,
+      latitude: currentLat,
+      longitude: currentLng,
+    })
+  }
   render() {
-    const { forecast, longitude, latitude } = this.state;
-    const { currentLng, currentLat, handleManualVsMapInput, mapClicked, getWeatherData } = this.props;
+    const { city, longitude, latitude } = this.state;
+    const { currentLng, currentLat, handleManualVsMapInput, mapClicked, getWeatherData, cities } = this.props;
     const SunnyIcon = <WiDaySunny size={34} color='#ffb300' />
     const latInput = document.getElementById('lat');
     const lngInput = document.getElementById('lng');
+
+    // Loops through the recent cities from the database and displays them as dropdown options
+    let dropdownOptions = cities.map((city, i) => {
+      let valueArray = [city.name, city.latitude, city.longitude];
+      return (
+        <option
+          value={valueArray}
+          name={city.name}
+          key={i}
+          lat={city.latitude}
+          lng={city.longitude}
+          >
+          {city.name}
+        </option>
+      )
+    })
     return (
       <form className='navigation-container'>
         <label className='dropdown-container'>
-          <select name="forecast" value={forecast} onChange={this.handleChange} className='dropdown'>
-            <option value="Today's Weather">Today's Weather</option>
-            <option value="Five Day Forecast">Five Day Forecast</option>
+          <select
+            name="city"
+            value={city}
+            onChange={this.handleRecentCityClick}
+            default='Recently Searched'
+            className='dropdown'
+            onClick={() => handleManualVsMapInput()}
+          >
+            <option value={'Recently Searched'} key={0}>Recently Searched</option>
+            {dropdownOptions}
           </select>
         </label>
         <input

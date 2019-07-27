@@ -91,6 +91,7 @@ class App extends React.Component {
             currentLng={currentLng}
             currentLat={currentLat}
             mapClicked={mapClicked}
+            cities={cities}
             handleManualVsMapInput={this.handleManualVsMapInput}
             getWeatherData={this.getWeatherData}
           />
