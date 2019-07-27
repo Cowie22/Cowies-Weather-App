@@ -35,10 +35,14 @@ app.get('/weather/:lat/:lng', async function(req, res) {
   res.send(JSON.stringify(weatherData.data));
 });
 
-// get and post to the database for cities
+// Get and post to the database for cities
+// Get requests ensures that only the ten most recent searches are displayed to the user
+// Otherwise the UI dropdown would be far too long
 app.get('/city', async function(req, res) {
-  const getCityInfo = await getAllCities()
-  res.send(getCityInfo[0])
+  const getCityInfo = await getAllCities();
+  let reducedCityInfo = getCityInfo[0].slice(getCityInfo[0].length - 10, getCityInfo[0].length);
+  console.log('cityinfo', reducedCityInfo)
+  res.send(reducedCityInfo)
 })
 
 app.post('/city', async function(req, res) {

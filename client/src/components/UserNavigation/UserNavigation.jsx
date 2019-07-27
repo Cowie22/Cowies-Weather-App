@@ -19,6 +19,11 @@ class UserNavigation extends React.Component {
     this.setState(newState);
   }
 
+  // In order to extract the longitude and latitude out of each dropdown option,
+  // I put all of the values into a an array as the option is being created (below)
+  // And then split them out here.
+  // Clicking a value in the dropdown will give you the saved lng/lat from the database
+  // And clicking the weather button will display the weather
   handleRecentCityClick(event) {
     let cityValues = (event.target.value).split(',')
     let currentLat = cityValues[1];
@@ -35,6 +40,8 @@ class UserNavigation extends React.Component {
     const SunnyIcon = <WiDaySunny size={34} color='#ffb300' />
     const latInput = document.getElementById('lat');
     const lngInput = document.getElementById('lng');
+
+    // Loops through the recent cities from the database and displays them as dropdown options
     let dropdownOptions = cities.map((city, i) => {
       let valueArray = [city.name, city.latitude, city.longitude];
       return (
