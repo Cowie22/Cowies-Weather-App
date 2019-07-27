@@ -5,10 +5,10 @@
   "main": "server/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "precommit": "lint-staged",
     "react-dev": "webpack -d --watch",
     "react-p": "webpack -p",
-    "start": "nodemon server/index.js"
+    "start": "node server/index.js",
+    "server": "nodemon server/index.js"
   },
   "lint-staged": {
     "*.js": [
