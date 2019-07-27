@@ -10,6 +10,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       weatherData: [],
+      cities: [],
+      currentCity: '',
       currentLng: 0,
       currentLat: 0,
       mapClicked: false,
@@ -17,6 +19,11 @@ class App extends React.Component {
     this.handleGetLngLat = this.handleGetLngLat.bind(this);
     this.handleManualVsMapInput = this.handleManualVsMapInput.bind(this);
     this.getWeatherData = this.getWeatherData.bind(this);
+    this.addCity = this.addCity.bind(this);
+  }
+
+  componentDidMount() {
+    this.getCity();
   }
 
   getWeatherData(lat, lng) {
@@ -26,8 +33,32 @@ class App extends React.Component {
       .then(res => {
         this.setState({
           weatherData: res.data,
+          currentCity: res.data.title,
         })
       })
+      .then(() => {
+        let info = {
+          postLat: lat,
+          postLng: lng,
+          postCity: this.state.currentCity,
+        };
+        this.addCity(info);
+      });
+  }
+
+  getCity() {
+    axios.get(`/city`)
+      .then(res => {
+        this.setState({
+          cities: res.data,
+        });
+      });
+  }
+
+  addCity(info) {
+    console.log('postinfo', info)
+    axios.post(`/city`, info)
+      .then(this.getCity());
   }
 
   // When a user clicks the map, they will get the lng/lat and will be the input fields will display the results
@@ -38,17 +69,17 @@ class App extends React.Component {
       currentLng: event.lng.toFixed(4),
       currentLat: event.lat.toFixed(4),
       mapClicked: true,
-    })
+    });
   }
 
   handleManualVsMapInput() {
     this.setState({
       mapClicked: false,
-    })
+    });
   }
 
   render() {
-    const { weatherData, currentLng, currentLat, mapClicked } = this.state;
+    const { weatherData, currentLng, currentLat, mapClicked, cities, currentCity } = this.state;
     console.log('weather', weatherData)
     return (
       <div className='app-container'>
@@ -70,7 +101,6 @@ class App extends React.Component {
               handleGetLngLat={this.handleGetLngLat}
             />
           </div>
-          {console.log(weatherData.length)}
           {
           // Conditional to only display weather when the user requests it and to avoid errors
           weatherData.consolidated_weather ?

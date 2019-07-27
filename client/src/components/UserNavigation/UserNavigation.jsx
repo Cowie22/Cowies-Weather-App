@@ -57,8 +57,8 @@ class UserNavigation extends React.Component {
         <button
           className='user-btn'
           onClick={(event) => {
-            event.preventDefault();
-            getWeatherData(latInput.value, lngInput.value);
+              event.preventDefault();
+              getWeatherData(latInput.value, lngInput.value);
             }
           }
         >

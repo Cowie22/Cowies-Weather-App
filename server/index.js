@@ -3,6 +3,7 @@ const cors = require('cors');
 const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
+const { getAllCities, addCity } = require('../database/index');
 
 const app = express();
 
@@ -33,6 +34,18 @@ app.get('/weather/:lat/:lng', async function(req, res) {
   const weatherData = await axios.get(`https://www.metaweather.com/api/location/${locationID}`);
   res.send(JSON.stringify(weatherData.data));
 });
+
+// get and post to the database for cities
+app.get('/city', async function(req, res) {
+  const getCityInfo = await getAllCities()
+  res.send(getCityInfo[0])
+})
+
+app.post('/city', async function(req, res) {
+  const info = req.body;
+  const postCityInfo = await addCity(info);
+  res.send(postCityInfo)
+})
 
 app.listen(PORT, () => {
   console.log(`Web server running on: http://localhost:${PORT}`);
