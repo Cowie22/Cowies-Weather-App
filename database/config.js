@@ -12,7 +12,7 @@ module.exports = {
 //   database: 'heroku_67c5b230635acbd'
 // };
 
-//test test
+//test
 
 //mysql://b7cf609352ea53:83301934@us-cdbr-iron-east-02.cleardb.net/heroku_f32124548e30fc0?reconnect=true
 
