@@ -17,7 +17,7 @@ CREATE TABLE city (
   PRIMARY KEY (id)
 );
 
-
+INSERT into city (name, latitude, longitude) VALUES ("Lake Tahoe", 38, -119);
 
 /*  Execute this file from the command line by typing:
  *    mysql -u root -p < schema.sql
