@@ -61,7 +61,7 @@ class App extends React.Component {
         })
       })
       .catch(err => {
-        alert(err)
+        console.log(err)
       });
   }
 
@@ -70,7 +70,7 @@ class App extends React.Component {
     axios.post(`/city`, info)
       .then(this.getCity())
       .catch(err => {
-        alert(err)
+        console.log(err)
       });
   }
 
