@@ -1,18 +1,20 @@
-module.exports = {
-  host: 'localhost',
-  user: 'root',
-  password: 'Courtcowie22',
-  database: 'weather'
-};
-
 // module.exports = {
-//   host: 'us-cdbr-iron-east-02.cleardb.net',
-//   user: 'b8397969cc5e06',
-//   password: '969fc074',
-//   database: 'heroku_67c5b230635acbd'
+//   host: 'localhost',
+//   user: 'root',
+//   password: 'Courtcowie22',
+//   database: 'weather'
 // };
 
+module.exports = {
+  host: 'us-cdbr-iron-east-02.cleardb.net',
+  user: 'b8397969cc5e06',
+  password: '969fc074',
+  database: 'heroku_67c5b230635acbd'
+};
+
 //test
+
+// mysql://b8397969cc5e06:969fc074@us-cdbr-iron-east-02.cleardb.net/heroku_67c5b230635acbd?reconnect=true
 
 //mysql://b7cf609352ea53:83301934@us-cdbr-iron-east-02.cleardb.net/heroku_f32124548e30fc0?reconnect=true
 
@@ -29,3 +31,6 @@ module.exports = {
 // mysql://root:Courtcowie22@127.0.0.1/omni_dev?encoding=utf8
 
 // mysql://b8397969cc5e06:969fc074@127.0.0.1/omni_dev?encoding=utf8
+
+// Username:	b8397969cc5e06
+// Password:	969fc074 (Reset)
