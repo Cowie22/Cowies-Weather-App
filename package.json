@@ -11,6 +11,9 @@
     "postinstall": "webpack -p",
     "server": "nodemon server/index.js"
   },
+  "engines": {
+    "node": "10.15.0"
+  },
   "lint-staged": {
     "*.js": [
       "eslint --fix",
