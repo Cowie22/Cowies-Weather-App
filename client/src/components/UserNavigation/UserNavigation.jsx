@@ -5,7 +5,7 @@ class UserNavigation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      forecast: `Today's Weather`,
+      city: `Recently Searched`,
       longitude: '',
       latitude: '',
     }
@@ -18,17 +18,28 @@ class UserNavigation extends React.Component {
     this.setState(newState);
   }
   render() {
-    const { forecast, longitude, latitude } = this.state;
-    const { currentLng, currentLat, handleManualVsMapInput, mapClicked, getWeatherData } = this.props;
+    const { city, longitude, latitude } = this.state;
+    const { currentLng, currentLat, handleManualVsMapInput, mapClicked, getWeatherData, cities } = this.props;
     const SunnyIcon = <WiDaySunny size={34} color='#ffb300' />
     const latInput = document.getElementById('lat');
     const lngInput = document.getElementById('lng');
+    let dropdownOptions = cities.map((city, i) => {
+      return (
+        <option value={city.name} key={i}>{city.name}</option>
+      )
+    })
     return (
       <form className='navigation-container'>
         <label className='dropdown-container'>
-          <select name="forecast" value={forecast} onChange={this.handleChange} className='dropdown'>
-            <option value="Today's Weather">Today's Weather</option>
-            <option value="Five Day Forecast">Five Day Forecast</option>
+          <select
+            name="city"
+            value={city}
+            onChange={this.handleChange}
+            default='Recently Searched'
+            className='dropdown'
+          >
+            <option value={'Recently Searched'} key={0}>Recently Searched</option>
+            {dropdownOptions}
           </select>
         </label>
         <input
