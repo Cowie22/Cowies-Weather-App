@@ -1,8 +1,16 @@
 
 const webpack = require('webpack');
+var path = require('path');
+var DIST_DIR = path.join(__dirname, '/client/public');
+var SRC_DIR = path.join(__dirname, '/client/src');
 
 module.exports = {
-  entry: './client/src/index.jsx',
+  entry: `${SRC_DIR}/index.jsx`,
+  output: {
+    filename: 'bundle.js',
+    publicPath: '/',
+    path: DIST_DIR
+  },
   module: {
     rules: [
       {
@@ -40,11 +48,6 @@ module.exports = {
   },
   resolve: {
     extensions: ['*', '.js', '.jsx'],
-  },
-  output: {
-    path: `${__dirname}/client/public`,
-    publicPath: '/',
-    filename: 'bundle.js',
   },
   plugins: [
     // new webpack.HotModuleReplacementPlugin(),
